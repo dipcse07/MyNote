@@ -24,10 +24,15 @@
   <body ng-app="starter">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content ng-controller="ListCtrl">
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view> 
+      
+    <!--     <ion-view>
+
+
+    <ion-content ng-controller="ListCtrl">
       <div class = "list">
       <a href="#/edit" class= "item" ng-repeat= "note in notes" >
       <h2>{{note.title}}</h2>
@@ -35,6 +40,7 @@
       </a>
        </div>
       </ion-content>
+     </ion-view> -->
     </ion-pane>
   </body>
 </html>

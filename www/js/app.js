@@ -18,14 +18,24 @@ $scope.notes = [
   description:'This is my second note'
 }
 
-
 ];
-
-
 
 });
 
+app.config(function($stateProvider,$urlRouterProvider){
 
+$stateProvider.state('list',{
+  url:'/list',
+  templateUrl:'templates/list.html'
+});
+
+$stateProvider.state('edit',{
+       url: '/edit',
+        templateUrl: 'templates/edit.html'
+    });
+
+$urlRouterProvider.otherwise('/list');
+});
 
 
 
