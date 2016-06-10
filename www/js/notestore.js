@@ -40,7 +40,7 @@ angular.module('mynotes.notestore',[])
 
   move:function (note, fromIndex, toIndex) {
     notes.splice(fromIndex, 1);
-    notes.splice(toIndex, 0, 1);
+    notes.splice(toIndex, 0, note);
     persist();
 
   },
