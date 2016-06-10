@@ -3,13 +3,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic'])
 
-app.controller('ListCtrl',function($scope){
+(function(){
 
-$scope.notes = [
+var app = angular.module('starter', ['ionic']);
 
-{ id:'1',
+
+var notes = [
+  { id:'1',
   title: 'Firs note',
   description: 'This is my First  note'
 },
@@ -20,9 +21,45 @@ $scope.notes = [
 
 ];
 
+function getNote(noteId){
+  for(var i = 0;i < notes.length;i++){
+   if(notes[i].id === noteId){
+      return notes[i];
+
+    }
+  }
+  return undefined;
+}
+
+function updateNote(note){
+  for(var i = 0;i < notes.length;i++){
+   if(notes[i].id === note.id){
+       notes[i] = note;
+       return ;
+
+    }
+  }
+  return undefined;
+}
+
+
+
+app.controller('ListCtrl',function($scope){
+
+$scope.notes = notes;
 });
 
+app.controller('EditCtrl',function($scope,$state){
+  $scope.note = angular.copy(getNote($state.params.noteId));
 
+
+  $scope.save = function(){
+
+    updateNote($scope.note);
+    $state.go('list');
+  };
+
+});
 
 app.config(function($stateProvider,$urlRouterProvider){
 
@@ -59,3 +96,5 @@ app.run(function($ionicPlatform) {
     }
   });
 });
+
+}());
