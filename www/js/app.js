@@ -9,11 +9,11 @@ app.controller('ListCtrl',function($scope){
 
 $scope.notes = [
 
-{
+{ id:'1',
   title: 'Firs note',
   description: 'This is my First  note'
 },
-{
+{  id:'2',
   title:'Second Note',
   description:'This is my second note'
 }
@@ -21,6 +21,8 @@ $scope.notes = [
 ];
 
 });
+
+
 
 app.config(function($stateProvider,$urlRouterProvider){
 
@@ -30,7 +32,7 @@ $stateProvider.state('list',{
 });
 
 $stateProvider.state('edit',{
-       url: '/edit',
+       url: '/edit/:noteId',
         templateUrl: 'templates/edit.html'
     });
 
