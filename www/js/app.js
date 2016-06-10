@@ -15,6 +15,15 @@ var app = angular.module('mynotes', ['ionic','mynotes.notestore']);
 app.controller('ListCtrl',function($scope,NoteStore){
 
 $scope.notes = NoteStore.list();
+
+$scope.remove = function (noteId) {
+  NoteStore.remove(noteId);
+};
+
+ $scope.move = function(note, fromIndex, toIndex){
+   NoteStore.move(note, fromIndex, toIndex);
+ };
+
 });
 
 
