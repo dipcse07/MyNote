@@ -6,35 +6,48 @@
 
 (function(){
 
-var app = angular.module('mynotes', ['ionic','mynotes.notestore']);
+var app = angular.module('mynotes', ['ionic', 'mynotes.notestore']);
+
+
+
+
+function getNote(noteId){
+  for(var i = 0;i < notes.length;i++){
+   if(notes[i].id === noteId){
+      return notes[i];
+
+    }
+  }
+  return undefined;
+}
 
 
 
 
 
-app.controller('ListCtrl',function($scope,NoteStore){
 
-$scope.notes = NoteStore.list();
+
+app.controller('ListCtrl',function($scope, NoteStore){
 
 $scope.reordering = false;
+$scope.notes = NoteStore.list();
 
-
-$scope.remove = function (noteId) {
+$scope.remove = function(noteId){
   NoteStore.remove(noteId);
 };
 
- $scope.move = function(note, fromIndex, toIndex){
-   NoteStore.move(note, fromIndex, toIndex);
- };
+  $scope.move = function(note, fromIndex, toIndex){
+    NoteStore.move(note, fromIndex, toIndex);
+  };
 
- $scope.toggleReordering = function(){
-   $scope.reordering = !$scope.reordering;
- }
+  $scope.toggleReordering = function(){
+    $scope.reordering = !$scope.reordering;
+  };
 
 });
 
 
-app.controller('AddCtrl',function($scope,$state,NoteStore){
+app.controller('AddCtrl',function($scope,$state, NoteStore){
   $scope.note = {
        id: new Date().getTime().toString(),
        title: '',
@@ -52,7 +65,7 @@ app.controller('AddCtrl',function($scope,$state,NoteStore){
 
 
 
-app.controller('EditCtrl',function($scope,$state,NoteStore){
+app.controller('EditCtrl',function($scope, $state, NoteStore){
   $scope.note = angular.copy(NoteStore.get($state.params.noteId));
 
 
@@ -85,7 +98,6 @@ $stateProvider.state('edit',{
 
 $urlRouterProvider.otherwise('/list');
 });
-
 
 
 
